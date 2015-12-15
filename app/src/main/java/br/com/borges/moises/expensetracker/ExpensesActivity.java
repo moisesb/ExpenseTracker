@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.model.Expense;
+import br.com.borges.moises.expensetracker.model.ExpenseLab;
 import br.com.borges.moises.expensetracker.ui.expenses.ExpensesFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,26 +27,16 @@ public class ExpensesActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         
         bindToolbar();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         addExpensesFragment();
     }
 
     private void addExpensesFragment() {
-        Expense sampleExpense = new Expense();
-        sampleExpense.setAmount(12.60);
-        sampleExpense.setDescription("Lanche");
-        sampleExpense.setId(1);
-        sampleExpense.setAccount(null);
-
-        Expense anotherSampleExpense = new Expense();
-        anotherSampleExpense.setAmount(119.90);
-        anotherSampleExpense.setDescription("Xbox Gold");
-        anotherSampleExpense.setId(2);
-        anotherSampleExpense.setAccount(null);
-
-        List<Expense> expenses = new ArrayList<>();
-        expenses.add(sampleExpense);
-        expenses.add(anotherSampleExpense);
+        List<Expense> expenses = ExpenseLab.getExpenseLab(this).getExpenses();
 
         Fragment expensesFragment = ExpensesFragment.newInstance(expenses);
         getSupportFragmentManager().beginTransaction()

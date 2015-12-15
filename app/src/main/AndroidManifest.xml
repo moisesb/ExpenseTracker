@@ -15,7 +15,7 @@
         </activity>
         <activity
             android:name=".ExpensesActivity"
-            android:label="@string/expense_activity"
+            android:label="@string/expenses_activity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,7 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ExpenseActivity">
+        <activity
+            android:name=".ExpenseActivity"
+            android:parentActivityName=".ExpensesActivity"
+            android:label="@string/expense_activity">
         </activity>
     </application>
 

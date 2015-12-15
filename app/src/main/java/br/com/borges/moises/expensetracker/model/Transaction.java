@@ -46,4 +46,6 @@ public abstract class Transaction implements Serializable{
     public abstract void execute();
 
     public abstract void rollback();
+
+    public abstract boolean isValid();
 }

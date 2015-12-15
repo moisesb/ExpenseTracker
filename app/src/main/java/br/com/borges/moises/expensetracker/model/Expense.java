@@ -5,6 +5,9 @@ package br.com.borges.moises.expensetracker.model;
  */
 public class Expense extends Transaction{
 
+    public Expense() {
+
+    }
 
     @Override
     public void execute() {
@@ -14,5 +17,10 @@ public class Expense extends Transaction{
     @Override
     public void rollback() {
 
+    }
+
+    @Override
+    public boolean isValid() {
+        return mAmount > 0 && mDescription != null && !mDescription.isEmpty()? true: false;
     }
 }

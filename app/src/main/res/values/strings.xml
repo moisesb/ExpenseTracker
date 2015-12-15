@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">ExpenseTracker</string>
 
+    <!-- Menu action names -->
+    <string name="action_add_expense">Add Expense</string>
+    <string name="action_delete_expense">Delete Expense</string>
+    <string name="action_edit_expense">Edit Expense</string>
+
     <!-- Activities names -->
-    <string name="expense_activity">Expenses</string>
+    <string name="expenses_activity">Expenses</string>
+    <string name="expense_activity">New Expense</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Expense Activity names -->
+    <string name="description_text_view">Description</string>
+    <string name="amount_text_view">Amount</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

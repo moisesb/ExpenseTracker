@@ -43,13 +43,14 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
         return mExpenses.size();
     }
 
-    public class ExpenseViewHolder extends RecyclerView.ViewHolder {
+    public class ExpenseViewHolder extends RecyclerView.ViewHolder{
 
         @Bind(R.id.expense_item_description_text_view)
         TextView mDescriptionTextView;
 
         @Bind(R.id.expense_item_amount_text_view)
         TextView mAmountTextView;
+
 
         public ExpenseViewHolder(View itemView) {
             super(itemView);
@@ -60,5 +61,6 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
             mDescriptionTextView.setText(expense.getDescription());
             mAmountTextView.setText(Double.toString(expense.getAmount()));
         }
+
     }
 }

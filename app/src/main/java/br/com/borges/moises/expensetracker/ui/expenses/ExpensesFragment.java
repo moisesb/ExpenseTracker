@@ -1,6 +1,7 @@
 package br.com.borges.moises.expensetracker.ui.expenses;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,10 @@ import android.view.ViewGroup;
 import java.io.Serializable;
 import java.util.List;
 
+import br.com.borges.moises.expensetracker.ExpenseActivity;
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.adapters.ExpensesAdapter;
+import br.com.borges.moises.expensetracker.listeners.RecyclerItemClickListener;
 import br.com.borges.moises.expensetracker.model.Expense;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -67,6 +70,15 @@ public class ExpensesFragment extends Fragment {
 
         ExpensesAdapter adapter = new ExpensesAdapter(mExpenses);
         mExpensesRecyclerView.setAdapter(adapter);
+
+        mExpensesRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Expense selectedExpense = mExpenses.get(position);
+                Intent intent = ExpenseActivity.newIntent(getActivity(), selectedExpense);
+                startActivity(intent);
+            }
+        }));
     }
 
 }
