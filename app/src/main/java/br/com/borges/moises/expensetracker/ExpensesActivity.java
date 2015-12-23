@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.model.Expense;
@@ -49,7 +48,7 @@ public class ExpensesActivity extends AppCompatActivity {
         setSupportActionBar(mExpensesToolbar);
     }
 
-    @OnClick(R.id.add_expense_fab) void openAddExpenseActivity() {
+    @OnClick(R.id.add_item_fab) void openAddExpenseActivity() {
         Intent intent = ExpenseActivity.newIntent(this,new Expense());
         startActivity(intent);
     }

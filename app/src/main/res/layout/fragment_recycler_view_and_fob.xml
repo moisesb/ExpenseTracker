@@ -14,13 +14,15 @@
         tools:context=".ExpensesActivity">
 
         <include
-            android:id="@+id/expenses_toolbar"
+            android:id="@+id/items_toolbar"
             layout="@layout/layout_app_toolbar"/>
 
-        <FrameLayout
-            android:id="@+id/expenses_frame_layout"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/items_list_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
