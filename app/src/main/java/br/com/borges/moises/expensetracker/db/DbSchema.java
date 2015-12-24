@@ -32,8 +32,7 @@ public class DbSchema {
                     "create table if not exists " + NAME + "(" +
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
                     Columns.NAME + COMMA_SEP +
-                    Columns.EMAIL + COMMA_SEP +
-                    ")";
+                    Columns.EMAIL + ")";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
         }
@@ -51,12 +50,11 @@ public class DbSchema {
 
         public static final class Sql {
             public static final String CREATE_TABLE =
-                    "create table if not exists" + NAME + "(" +
+                    "create table if not exists " + NAME + "(" +
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
                     Columns.DESCRIPTION + COMMA_SEP +
                     Columns.OPENING_BALANCE + COMMA_SEP +
-                    Columns.TYPE + COMMA_SEP +
-                    ")";
+                    Columns.TYPE + ")";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
         }
@@ -84,13 +82,12 @@ public class DbSchema {
 
         public static final class Sql {
             public static final String CREATE_TABLE =
-                    "create table if not exists" + NAME + "(" +
+                    "create table if not exists " + NAME + "(" +
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
                     Columns.DESCRIPTION + COMMA_SEP +
                     Columns.ACCOUNT + COMMA_SEP +
                     Columns.AMOUNT + COMMA_SEP +
-                    Columns.TYPE + COMMA_SEP +
-                    ")";
+                    Columns.TYPE + ")";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
         }

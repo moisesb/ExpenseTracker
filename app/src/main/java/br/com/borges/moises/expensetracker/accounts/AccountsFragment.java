@@ -3,39 +3,42 @@ package br.com.borges.moises.expensetracker.accounts;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
-import br.com.borges.moises.expensetracker.listeners.RecyclerItemClickListener;
 import br.com.borges.moises.expensetracker.model.Account;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AccountsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AccountsFragment extends Fragment implements AccountsContract.View{
 
     private AccountsContract.UserActionsListener mUserActionsListener;
-    private AccountsAdapter mAccountsAdapter;
+
+    private AccountsAdapter mAccountsAdapter = new AccountsAdapter(new ArrayList<Account>(0), new AccountItemListener() {
+        @Override
+        public void onAccountClick(Account account) {
+            mUserActionsListener.openAccountDetails(account);
+        }
+    });
 
     @Bind(R.id.items_list_recycler_view)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.add_item_fab)
     FloatingActionButton mFloatingActionButton;
 
     public static AccountsFragment newInstance() {
@@ -53,13 +56,6 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        mAccountsAdapter = new AccountsAdapter(new ArrayList<Account>(0), new AccountItemListener() {
-            @Override
-            public void onAccountClick(Account account) {
-                mUserActionsListener.openAccountDetails(account);
-            }
-        });
     }
 
     @Override
@@ -71,8 +67,10 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_view_and_fob,container,false);
+        View view = inflater.inflate(R.layout.fragment_recycler_view,container,false);
         ButterKnife.bind(this, view);
+
+        mFloatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.add_item_fab);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -101,19 +99,21 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
 
     @Override
     public void showAddAccount() {
-
+        //TODO: open AccountActivity when available
+        Log.d("Accounts", "add account");
     }
 
     @Override
     public void showAccountDetailUI(@NonNull Account account) {
-
+        //TODO: open AccountDefatail when available
+        Log.d("Accounts","account " + account.getDescription() +  " detail");
     }
 
     public interface AccountItemListener {
         void onAccountClick(Account account);
     }
 
-    private static class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHolder> {
+    private static class AccountsAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         private List<Account> mAccounts;
         private AccountItemListener mAccountItemListener;
@@ -148,26 +148,41 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
             notifyDataSetChanged();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    }
 
-            private AccountItemListener mAccountItemListener;
-            private Account mAccount;
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-            public ViewHolder(View itemView, AccountItemListener accountItemListener) {
-                super(itemView);
-                mAccountItemListener = accountItemListener;
-                ButterKnife.bind(this,itemView);
-            }
+        private AccountItemListener mAccountItemListener;
+        private Account mAccount;
+        private View mView;
 
-            public void bindAccount(Account account) {
-                //TODO: fill account view
-                mAccount = account;
-            }
+        @Bind(R.id.account_balance)
+        TextView mBalanceTextView;
 
-            @Override
-            public void onClick(View v) {
-                mAccountItemListener.onAccountClick(mAccount);
-            }
+        @Bind(R.id.account_description)
+        TextView mdescriptionTextView;
+
+        @Bind(R.id.account_type_textview)
+        TextView mTypeTextView;
+
+        public ViewHolder(View itemView, AccountItemListener accountItemListener) {
+            super(itemView);
+            mView = itemView;
+            mAccountItemListener = accountItemListener;
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        public void bindAccount(Account account) {
+            mAccount = account;
+            mdescriptionTextView.setText(mAccount.getDescription());
+            mTypeTextView.setText(mAccount.getType().toString());
+            mBalanceTextView.setText(String.valueOf(mAccount.getOpeningBalance()));
+        }
+
+        @Override
+        public void onClick(View v) {
+            mAccountItemListener.onAccountClick(mAccount);
         }
     }
 }

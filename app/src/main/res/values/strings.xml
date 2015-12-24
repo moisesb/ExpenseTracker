@@ -9,6 +9,7 @@
     <!-- Activities names -->
     <string name="expenses_activity">Expenses</string>
     <string name="expense_activity">New Expense</string>
+    <string name="accounts_activity">Accounts</string>
     <string name="action_settings">Settings</string>
 
     <!-- Expense Activity names -->

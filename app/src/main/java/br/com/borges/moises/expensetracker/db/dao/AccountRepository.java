@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.db.DbSchema.AccountTable;
@@ -16,7 +17,7 @@ import br.com.borges.moises.expensetracker.model.AccountType;
 /**
  * Created by Moisés on 15/12/2015.
  */
-public class AccountRepository {
+public class AccountRepository{
 
     private static AccountRepository sAccountRepository;
     private SQLiteDatabase sDatabase;
@@ -62,7 +63,24 @@ public class AccountRepository {
     }
 
     public List<Account> getAccounts() {
-        return null;
+        Cursor c = sDatabase.query(
+                AccountTable.NAME,  // The table to query
+                null,                               // The columns to return
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+        List<Account> accounts = new ArrayList<>();
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            Account account = getAccount(c);
+            accounts.add(account);
+            c.moveToNext();
+        }
+
+        return accounts;
     }
 
     public long addAccount(Account account) {
@@ -99,4 +117,5 @@ public class AccountRepository {
         contentValues.put(AccountTable.Columns.OPENING_BALANCE, account.getOpeningBalance());
         return contentValues;
     }
+
 }
