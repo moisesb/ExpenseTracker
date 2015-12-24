@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 /**
  * Created by moise on 22/12/2015.
  */
-public abstract class SingleFragmentActivity extends AppCompatActivity {
+public abstract class SingleFragmentWithFabActivity extends AppCompatActivity {
 
     @Bind(R.id.items_toolbar)
     Toolbar mToolbar;
