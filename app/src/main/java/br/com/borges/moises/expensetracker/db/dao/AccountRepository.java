@@ -48,6 +48,7 @@ public class AccountRepository{
                 null                                 // The sort order
         );
 
+        c.moveToFirst();
         Account account = getAccount(c);
 
         return account;
@@ -58,7 +59,7 @@ public class AccountRepository{
         account.setId(cursor.getInt(cursor.getColumnIndex(AccountTable.Columns.ID)));
         account.setDescription(cursor.getString(cursor.getColumnIndex(AccountTable.Columns.DESCRIPTION)));
         account.setOpeningBalance(cursor.getDouble(cursor.getColumnIndex(AccountTable.Columns.OPENING_BALANCE)));
-        account.setType(AccountType.from(cursor.getInt(cursor.getColumnIndex(AccountTable.Columns.TYPE))));
+        account.setType(cursor.getInt(cursor.getColumnIndex(AccountTable.Columns.TYPE)));
         return account;
     }
 
@@ -92,7 +93,7 @@ public class AccountRepository{
 
     public void deleteAccount(Account account) {
         if (account != null) {
-            String selection = AccountTable.Columns.ID + "like ?";
+            String selection = AccountTable.Columns.ID + " like ?";
             String[] selectionArgs = { String.valueOf(account.getId()) };
             sDatabase.delete(AccountTable.NAME, selection, selectionArgs);
         }
@@ -113,7 +114,7 @@ public class AccountRepository{
     private ContentValues getContentValues(Account account) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(AccountTable.Columns.DESCRIPTION, account.getDescription());
-        contentValues.put(AccountTable.Columns.TYPE, account.getType().getValue());
+        contentValues.put(AccountTable.Columns.TYPE, account.getType());
         contentValues.put(AccountTable.Columns.OPENING_BALANCE, account.getOpeningBalance());
         return contentValues;
     }

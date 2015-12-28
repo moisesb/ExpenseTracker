@@ -1,5 +1,7 @@
 package br.com.borges.moises.expensetracker.accountdetail;
 
+import java.util.List;
+
 import br.com.borges.moises.expensetracker.model.AccountType;
 
 /**
@@ -9,15 +11,16 @@ public interface AccountDetailContract {
 
     interface View {
         void setAccountDescription(String description);
-        void setAccountType(AccountType type);
-        void setAccountOpeningBalance(double openingBalance);
-        void setCurrentBalance(double currentBalance);
+        void setAccountType(int type);
+        void setAccountOpeningBalance(String openingBalance);
+        void setCurrentBalance(String currentBalance);
+        void setAccountTypesAdapter(List<AccountType> accountTypes);
         void close();
     }
 
     interface UserActionsListener {
         void openAccountDetail(int accountId);
         void deleteAccount(int accountId);
-        void updateAccount(int accountId, String description, AccountType type, double openingBalance);
+        void updateAccount(int accountId, String description, int type, String openingBalance);
     }
 }

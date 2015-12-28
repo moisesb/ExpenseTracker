@@ -2,6 +2,7 @@ package br.com.borges.moises.expensetracker.accounts;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -20,8 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.R;
+import br.com.borges.moises.expensetracker.accountdetail.AccountDetailActivity;
 import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
 import br.com.borges.moises.expensetracker.model.Account;
+import br.com.borges.moises.expensetracker.utils.AmountToString;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -107,6 +110,8 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
     public void showAccountDetailUI(int accountId) {
         //TODO: open AccountDefatail when available
         Log.d("Accounts","account id " + accountId +  " detail");
+        Intent intent = AccountDetailActivity.newIntent(getActivity(),accountId);
+        startActivity(intent);
     }
 
     public interface AccountItemListener {
@@ -176,8 +181,8 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
         public void bindAccount(Account account) {
             mAccount = account;
             mdescriptionTextView.setText(mAccount.getDescription());
-            mTypeTextView.setText(mAccount.getType().toString());
-            mBalanceTextView.setText(String.valueOf(mAccount.getOpeningBalance()));
+            mTypeTextView.setText(String.valueOf(mAccount.getType()));
+            mBalanceTextView.setText(String.valueOf(AmountToString.convert(mAccount.getOpeningBalance())));
         }
 
         @Override

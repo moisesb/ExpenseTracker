@@ -18,6 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".accountdetail.AccountDetailActivity"
+            android:label="@string/acccount_detail"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".accounts.AccountsActivity">
+        </activity>
         <activity
             android:name=".DashboardActivity"
             android:label="@string/app_name"
@@ -39,9 +45,7 @@
         <activity
             android:name=".ExpenseActivity"
             android:label="@string/expense_activity"
-            android:parentActivityName=".ExpensesActivity" >
-        </activity>
-        <activity android:name=".sharedUI.SingleFragmentActivity" >
+            android:parentActivityName=".ExpensesActivity">
         </activity>
     </application>
 

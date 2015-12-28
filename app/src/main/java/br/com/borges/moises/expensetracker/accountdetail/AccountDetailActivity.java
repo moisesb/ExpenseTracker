@@ -19,11 +19,18 @@ public class AccountDetailActivity extends SingleFragmentActivity{
         super.onCreate(savedInstanceState);
 
         mAccountId = getIntent().getIntExtra(ACCOUNT_ID_EXTRA, -1);
+
+        setActionBarHomeButton();
+    }
+
+    private void setActionBarHomeButton() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     protected Fragment getFragment() {
-        return null;
+        return AccountDetailFragment.newInstance(mAccountId);
     }
 
     public static Intent newIntent(Context context, int accountId) {

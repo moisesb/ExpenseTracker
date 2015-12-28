@@ -1,11 +1,15 @@
 package br.com.borges.moises.expensetracker.db;
 
+import br.com.borges.moises.expensetracker.model.AccountType;
+
 /**
  * Created by Moisés on 05/12/2015.
  */
 public class DbSchema {
 
     private static final String COMMA_SEP = ",";
+    private static final String FOREIGN_KEY = "foreign key";
+    private static final String REFERENCES = "references";
 
     // TODO: remove in the future
     public static final class ExpenseTable {
@@ -54,21 +58,33 @@ public class DbSchema {
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
                     Columns.DESCRIPTION + COMMA_SEP +
                     Columns.OPENING_BALANCE + COMMA_SEP +
-                    Columns.TYPE + ")";
+                    Columns.TYPE + COMMA_SEP +
+                    FOREIGN_KEY + "(" + Columns.TYPE + ") " + REFERENCES + " " + AccountTypeTable.NAME + "(" + AccountTypeTable.Columns.ID + "))";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
 
             public static final String INSERT_INITIAL_DATA = "insert into " + NAME + " values(?,?,?,?);";
 
         }
+    }
 
-        public static final class TypeValues {
-            public static final int CHECKING_ACCOUNT = 1;
-            public static final int CASH = 2;
-            public static final int SAVINGS = 3;
-            public static final int INVESTIMENT = 4;
-            public static final int CREDIT_CARD = 5;
+    public static final class AccountTypeTable {
+        public static final String NAME = "accounttypes";
 
+        public static final class Columns {
+            public static final String ID = "id";
+            public static final String DESCRIPTION = "description";
+        }
+
+        public static final class Sql {
+
+            public static final String CREATE_TABLE = "create table if not exists " + NAME + "(" +
+                    Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
+                    Columns.DESCRIPTION + ")";
+
+            public static final String DELETE_TABLE = "drop table if exists " + NAME;
+
+            public static final String INSERT_INITIAL_DATA = "insert into " + NAME + " values(?, ?);";
         }
     }
 

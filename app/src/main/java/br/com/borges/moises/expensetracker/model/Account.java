@@ -7,12 +7,12 @@ public class Account {
     private int mId;
     private String mDescription;
     private double mOpeningBalance;
-    private AccountType mType;
+    private int mType;
 
     public Account() {
     }
 
-    public Account(String description, double openingBalance, AccountType type) {
+    public Account(String description, double openingBalance, int type) {
         mDescription = description;
         mOpeningBalance = openingBalance;
         mType = type;
@@ -42,11 +42,11 @@ public class Account {
         mOpeningBalance = openingBalance;
     }
 
-    public AccountType getType() {
+    public int getType() {
         return mType;
     }
 
-    public void setType(AccountType type) {
+    public void setType(int type) {
         mType = type;
     }
 }

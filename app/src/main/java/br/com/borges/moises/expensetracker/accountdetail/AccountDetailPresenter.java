@@ -1,20 +1,30 @@
 package br.com.borges.moises.expensetracker.accountdetail;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.List;
+
 import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
+import br.com.borges.moises.expensetracker.db.dao.AccountTypeRepository;
 import br.com.borges.moises.expensetracker.model.Account;
 import br.com.borges.moises.expensetracker.model.AccountType;
+import br.com.borges.moises.expensetracker.utils.AmountToString;
 
 /**
  * Created by moise on 28/12/2015.
  */
 public class AccountDetailPresenter implements AccountDetailContract.UserActionsListener {
-    private AccountDetailContract.View mView;
-    private AccountRepository mAccountRepository;
+    private final AccountTypeRepository mAccountTypeRepository;
+    private final AccountDetailContract.View mView;
+    private final AccountRepository mAccountRepository;
     private Account mAccount;
 
-    public AccountDetailPresenter(AccountDetailContract.View view, AccountRepository accountRepository) {
+    public AccountDetailPresenter(AccountDetailContract.View view,
+                                  AccountRepository accountRepository,
+                                  AccountTypeRepository accountTypeRepository) {
         mView = view;
         mAccountRepository = accountRepository;
+        mAccountTypeRepository = accountTypeRepository;
     }
 
     @Override
@@ -24,10 +34,13 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
         if (mAccount == null)
             throw new IllegalArgumentException("Account with id " + accountId + " not found");
 
+        List<AccountType> accountTypes = mAccountTypeRepository.getAccountTypes();
+        mView.setAccountTypesAdapter(accountTypes);
+
         mView.setAccountDescription(mAccount.getDescription());
-        mView.setAccountOpeningBalance(mAccount.getOpeningBalance());
+        mView.setAccountOpeningBalance(AmountToString.convert(mAccount.getOpeningBalance()));
         mView.setAccountType(mAccount.getType());
-        mView.setCurrentBalance(mAccount.getOpeningBalance());
+        mView.setCurrentBalance(AmountToString.convert(mAccount.getOpeningBalance()));
     }
 
     private void loadAccountFromDatabase(int accountId) {
@@ -44,11 +57,11 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
     }
 
     @Override
-    public void updateAccount(int accountId, String description, AccountType type, double openingBalance) {
+    public void updateAccount(int accountId, String description, int type, String openingBalance) {
         Account updatedAccount = new Account();
         updatedAccount.setDescription(description);
         updatedAccount.setType(type);
-        updatedAccount.setOpeningBalance(openingBalance);
+        updatedAccount.setOpeningBalance(AmountToString.convert(openingBalance));
         updatedAccount.setId(accountId);
 
         mAccountRepository.updateAccount(updatedAccount);
