@@ -36,7 +36,7 @@ public class AccountsPresenter implements AccountsContract.UserActionsListener {
     @Override
     public void openAccountDetails(@NonNull Account account) {
         if (account != null) {
-            mAccountsContractView.showAccountDetailUI(account);
+            mAccountsContractView.showAccountDetailUI(account.getId());
         }else {
             throw new IllegalArgumentException("Account cannot be null");
         }

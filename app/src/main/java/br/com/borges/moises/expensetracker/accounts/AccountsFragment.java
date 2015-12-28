@@ -104,9 +104,9 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
     }
 
     @Override
-    public void showAccountDetailUI(@NonNull Account account) {
+    public void showAccountDetailUI(int accountId) {
         //TODO: open AccountDefatail when available
-        Log.d("Accounts","account " + account.getDescription() +  " detail");
+        Log.d("Accounts","account id " + accountId +  " detail");
     }
 
     public interface AccountItemListener {

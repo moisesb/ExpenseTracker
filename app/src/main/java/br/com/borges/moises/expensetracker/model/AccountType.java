@@ -13,6 +13,9 @@ public enum AccountType {
     INVESTIMENT(4),
     CREDIT_CARD(5);
 
+    private int mId;
+    private int mDescription;
+
     private int mValue;
 
     private AccountType(int val) {

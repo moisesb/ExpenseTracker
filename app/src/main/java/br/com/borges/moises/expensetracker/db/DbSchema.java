@@ -57,6 +57,9 @@ public class DbSchema {
                     Columns.TYPE + ")";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
+
+            public static final String INSERT_INITIAL_DATA = "insert into " + NAME + " values(?,?,?,?);";
+
         }
 
         public static final class TypeValues {

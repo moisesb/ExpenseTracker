@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import br.com.borges.moises.expensetracker.db.DbSchema;
 import br.com.borges.moises.expensetracker.db.DbSchema.AccountTable;
 import br.com.borges.moises.expensetracker.db.DbSchema.UserTable;
 import br.com.borges.moises.expensetracker.db.DbSchema.TransactionTable;
@@ -33,6 +34,14 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
         db.execSQL(UserTable.Sql.CREATE_TABLE);
         db.execSQL(AccountTable.Sql.CREATE_TABLE);
         db.execSQL(TransactionTable.Sql.CREATE_TABLE);
+
+        insertAccountInitialData(db);
+    }
+
+    private void insertAccountInitialData(SQLiteDatabase db) {
+        db.execSQL(AccountTable.Sql.INSERT_INITIAL_DATA,new Object[] {1, "My Wallet", 450.35 , 1} );
+        db.execSQL(AccountTable.Sql.INSERT_INITIAL_DATA,new Object[] {2, "My Bank", 5780.50 , 1} );
+        db.execSQL(AccountTable.Sql.INSERT_INITIAL_DATA,new Object[] {3, "My Credit Card", -500.70 , 5} );
     }
 
     @Override

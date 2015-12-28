@@ -14,7 +14,7 @@ public interface AccountsContract {
     interface View {
         void showAccounts(List<Account> accounts);
         void showAddAccount();
-        void showAccountDetailUI(@NonNull Account account);
+        void showAccountDetailUI(int accountId);
     }
 
     interface UserActionsListener {

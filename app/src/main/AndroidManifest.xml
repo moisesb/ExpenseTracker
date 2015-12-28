@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="br.com.borges.moises.expensetracker"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.borges.moises.expensetracker" >
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".accounts.AccountsActivity"
-                  android:label="@string/accounts_activity"
-                  android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".accounts.AccountsActivity"
+            android:label="@string/accounts_activity"
+            android:theme="@style/AppTheme" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".DashboardActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
             android:name=".ExpensesActivity"
             android:label="@string/expenses_activity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -36,8 +38,10 @@
         </activity>
         <activity
             android:name=".ExpenseActivity"
-            android:parentActivityName=".ExpensesActivity"
-            android:label="@string/expense_activity">
+            android:label="@string/expense_activity"
+            android:parentActivityName=".ExpensesActivity" >
+        </activity>
+        <activity android:name=".sharedUI.SingleFragmentActivity" >
         </activity>
     </application>
 
