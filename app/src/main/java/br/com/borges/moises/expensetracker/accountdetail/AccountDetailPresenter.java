@@ -1,14 +1,12 @@
 package br.com.borges.moises.expensetracker.accountdetail;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
 import br.com.borges.moises.expensetracker.db.dao.AccountTypeRepository;
 import br.com.borges.moises.expensetracker.model.Account;
 import br.com.borges.moises.expensetracker.model.AccountType;
-import br.com.borges.moises.expensetracker.utils.AmountToString;
+import br.com.borges.moises.expensetracker.utils.StringUtils;
 
 /**
  * Created by moise on 28/12/2015.
@@ -38,9 +36,9 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
         mView.setAccountTypesAdapter(accountTypes);
 
         mView.setAccountDescription(mAccount.getDescription());
-        mView.setAccountOpeningBalance(AmountToString.convert(mAccount.getOpeningBalance()));
+        mView.setAccountOpeningBalance(StringUtils.convertDoubleToString(mAccount.getOpeningBalance()));
         mView.setAccountType(mAccount.getType());
-        mView.setCurrentBalance(AmountToString.convert(mAccount.getOpeningBalance()));
+        mView.setCurrentBalance(StringUtils.convertDoubleToString(mAccount.getOpeningBalance()));
     }
 
     private void loadAccountFromDatabase(int accountId) {
@@ -61,7 +59,7 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
         Account updatedAccount = new Account();
         updatedAccount.setDescription(description);
         updatedAccount.setType(type);
-        updatedAccount.setOpeningBalance(AmountToString.convert(openingBalance));
+        updatedAccount.setOpeningBalance(StringUtils.convertStringToDouble(openingBalance));
         updatedAccount.setId(accountId);
 
         mAccountRepository.updateAccount(updatedAccount);

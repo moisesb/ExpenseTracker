@@ -20,12 +20,7 @@ public class AccountDetailActivity extends SingleFragmentActivity{
 
         mAccountId = getIntent().getIntExtra(ACCOUNT_ID_EXTRA, -1);
 
-        setActionBarHomeButton();
-    }
-
-    private void setActionBarHomeButton() {
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setActionBarHomeButtonActive(true);
     }
 
     @Override

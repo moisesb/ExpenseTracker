@@ -42,4 +42,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private void initActionBar() {
         setSupportActionBar(mToolbar);
     }
+
+    protected void setActionBarHomeButtonActive(boolean active) {
+        getSupportActionBar().setDisplayShowHomeEnabled(active);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(active);
+    }
 }
