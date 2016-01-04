@@ -159,13 +159,13 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
         private Account mAccount;
         private View mView;
 
-        @Bind(R.id.account_balance)
+        @Bind(R.id.account_balance_text_view)
         TextView mBalanceTextView;
 
-        @Bind(R.id.account_description)
+        @Bind(R.id.account_description_text_view)
         TextView mdescriptionTextView;
 
-        @Bind(R.id.account_type_textview)
+        @Bind(R.id.account_type_text_view)
         TextView mTypeTextView;
 
         public ViewHolder(View itemView, AccountItemListener accountItemListener) {

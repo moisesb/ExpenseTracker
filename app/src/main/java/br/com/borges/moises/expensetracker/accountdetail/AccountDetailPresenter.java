@@ -33,7 +33,7 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
             throw new IllegalArgumentException("Account with id " + accountId + " not found");
 
         List<AccountType> accountTypes = mAccountTypeRepository.getAccountTypes();
-        mView.setAccountTypesAdapter(accountTypes);
+        mView.showAccountTypes(accountTypes);
 
         mView.setAccountDescription(mAccount.getDescription());
         mView.setAccountOpeningBalance(StringUtils.convertDoubleToString(mAccount.getOpeningBalance()));

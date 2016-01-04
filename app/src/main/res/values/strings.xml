@@ -23,4 +23,5 @@
     <string name="action_edit_item">Edit</string>
     <string name="action_add_item">Add</string>
     <string name="add_account_activity">Add Account</string>
+    <string name="categories_activity">Categories</string>
 </resources>

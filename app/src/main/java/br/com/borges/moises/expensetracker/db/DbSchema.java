@@ -1,7 +1,5 @@
 package br.com.borges.moises.expensetracker.db;
 
-import br.com.borges.moises.expensetracker.model.AccountType;
-
 /**
  * Created by Moisés on 05/12/2015.
  */
@@ -10,6 +8,8 @@ public class DbSchema {
     private static final String COMMA_SEP = ",";
     private static final String FOREIGN_KEY = "foreign key";
     private static final String REFERENCES = "references";
+    private static final String UNIQUE = "unique";
+    private static final String DOT = ".";
 
     // TODO: remove in the future
     public static final class ExpenseTable {
@@ -84,7 +84,71 @@ public class DbSchema {
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
 
+            public static final String INSERT_INITIAL_DATA =
+                    "insert into " + NAME + " values(?, ?);";
+        }
+    }
+
+    public static final class CategoryTable {
+        public static final String NAME = "categories";
+
+        public static final class Columns {
+            public static final String ID = "id";
+            public static final String ID_WITH_PREFIX = NAME + DOT + ID;
+            public static final String TYPE = "type";
+            public static final String TYPE_WITH_PREFIX = NAME + DOT + TYPE;
+            public static final String DESCRIPTION = "description";
+            public static final String DESCRIPTTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
+        }
+
+        public static final class Sql {
+            public static final String CREATE_TABLE =
+                    "create table if not exists " + NAME + "(" +
+                            Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
+                            Columns.DESCRIPTION + " " + UNIQUE + COMMA_SEP +
+                            Columns.TYPE + COMMA_SEP +
+                            FOREIGN_KEY + "(" + Columns.TYPE + ") " + REFERENCES + " " + CategoryTypeTable.NAME + "(" + CategoryTypeTable.Columns.ID + "))";
+
+            public static final String DELETE_TABLE = "drop table if exists " + NAME;
+
+            public static final String INSERT_INITIAL_DATA = "insert into " + NAME + " values(?, ?, ?);";
+
+            public static Object[] getInsertParams(int id, String category, int typeId) {
+                return new Object[] {id, category,typeId};
+            }
+        }
+    }
+
+    public static final class CategoryTypeTable {
+        public static final String NAME = "categorytypes";
+
+        public static final class Columns {
+            public static final String ID = "id";
+            public static final String ID_WITH_PREFIX = NAME + DOT + ID;
+            public static final String DESCRIPTION = "description";
+            public static final String DESCRIPTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
+        }
+
+        public static final class Values {
+            public static final int EXPENSE_ID = 1;
+            public static final int INCOME_ID = 2;
+            public static final int TRANSFER_IN_ID = 3;
+            public static final int TRANSFER_OUT_ID = 4;
+        }
+
+        public static final class Sql {
+            public static final String CREATE_TABLE =
+                    "create table if not exists " + NAME + "(" +
+                            Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
+                            Columns.DESCRIPTION + " " + UNIQUE + ")";
+
+            public static final String DELETE_TABLE = "drop table if exists " + NAME;
+
             public static final String INSERT_INITIAL_DATA = "insert into " + NAME + " values(?, ?);";
+
+            public static Object[] getInsertParams(int id, String description) {
+                return new Object[] {id, description};
+            }
         }
     }
 

@@ -6,19 +6,19 @@
               android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/account_type_textview"
+        android:id="@+id/account_type_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Wallet"/>
 
     <TextView
-        android:id="@+id/account_description"
+        android:id="@+id/account_description_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="My Wallet"/>
 
     <TextView
-        android:id="@+id/account_balance"
+        android:id="@+id/account_balance_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="500.20"/>

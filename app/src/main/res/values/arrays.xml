@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icons">
+        <item>@drawable/ic_add</item>
+        <item>@drawable/ic_delete</item>
+        <item>@drawable/ic_edit</item>
+    </array>
+</resources>

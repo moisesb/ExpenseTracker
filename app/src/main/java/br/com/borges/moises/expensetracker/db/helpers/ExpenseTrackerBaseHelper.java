@@ -31,10 +31,30 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
         db.execSQL(UserTable.Sql.CREATE_TABLE);
         db.execSQL(AccountTypeTable.Sql.CREATE_TABLE);
         db.execSQL(AccountTable.Sql.CREATE_TABLE);
+        db.execSQL(CategoryTypeTable.Sql.CREATE_TABLE);
+        db.execSQL(CategoryTable.Sql.CREATE_TABLE);
         db.execSQL(TransactionTable.Sql.CREATE_TABLE);
 
+
+        insertCategoryTypeInitialData(db);
+        insertCategoryInitialData(db);
         insertAccountTypeInitialData(db);
         insertAccountInitialData(db);
+    }
+
+    private void insertCategoryInitialData(SQLiteDatabase db) {
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(1,"Car",1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(2,"Travel",1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(3,"School",1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(4,"Shopping",1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(5,"Salary",2));
+    }
+
+    private void insertCategoryTypeInitialData(SQLiteDatabase db) {
+        db.execSQL(CategoryTypeTable.Sql.INSERT_INITIAL_DATA,
+                CategoryTypeTable.Sql.getInsertParams(CategoryTypeTable.Values.EXPENSE_ID, "Expense"));
+        db.execSQL(CategoryTypeTable.Sql.INSERT_INITIAL_DATA,
+                CategoryTypeTable.Sql.getInsertParams(CategoryTypeTable.Values.INCOME_ID, "Income"));
     }
 
     private void insertAccountTypeInitialData(SQLiteDatabase db) {

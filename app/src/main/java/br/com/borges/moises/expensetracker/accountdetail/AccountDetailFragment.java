@@ -145,7 +145,7 @@ public class AccountDetailFragment extends Fragment implements AccountDetailCont
     }
 
     @Override
-    public void setAccountTypesAdapter(List<AccountType> accountTypes) {
+    public void showAccountTypes(List<AccountType> accountTypes) {
         mAdapter.setAccountTypes(accountTypes);
     }
 

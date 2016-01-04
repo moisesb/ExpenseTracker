@@ -14,7 +14,7 @@ public interface AccountDetailContract {
         void setAccountType(int type);
         void setAccountOpeningBalance(String openingBalance);
         void setCurrentBalance(String currentBalance);
-        void setAccountTypesAdapter(List<AccountType> accountTypes);
+        void showAccountTypes(List<AccountType> accountTypes);
         void close();
     }
 
