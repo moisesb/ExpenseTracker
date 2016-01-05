@@ -3,6 +3,11 @@ package br.com.borges.moises.expensetracker.db.helpers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateUtils;
+
+import java.util.Date;
+
+import br.com.borges.moises.expensetracker.db.DbSchema;
 
 import static br.com.borges.moises.expensetracker.db.DbSchema.*;
 
@@ -28,18 +33,45 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        createAllTables(db);
+        insertInitialData(db);
+    }
+
+    private void insertInitialData(SQLiteDatabase db) {
+        insertCategoryTypeInitialData(db);
+        insertCategoryInitialData(db);
+        insertAccountTypeInitialData(db);
+        insertAccountInitialData(db);
+        insertTransactionTypeInitialData(db);
+        insertTransactionInitialData(db);
+    }
+
+    private void createAllTables(SQLiteDatabase db) {
         db.execSQL(UserTable.Sql.CREATE_TABLE);
         db.execSQL(AccountTypeTable.Sql.CREATE_TABLE);
         db.execSQL(AccountTable.Sql.CREATE_TABLE);
         db.execSQL(CategoryTypeTable.Sql.CREATE_TABLE);
         db.execSQL(CategoryTable.Sql.CREATE_TABLE);
+        db.execSQL(TransactionCategoryTable.Sql.CREATE_TABLE);
         db.execSQL(TransactionTable.Sql.CREATE_TABLE);
+        db.execSQL(TransferTable.Sql.CREATE_TABLE);
+    }
 
+    private void insertTransactionInitialData(SQLiteDatabase db) {
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+        db.execSQL(TransactionTable.Sql.INSERT_VALUE,
+                TransactionTable.Sql.getInsertParams(1,"Car Insurance",2,354.76 ,date ,1));
+    }
 
-        insertCategoryTypeInitialData(db);
-        insertCategoryInitialData(db);
-        insertAccountTypeInitialData(db);
-        insertAccountInitialData(db);
+    private void insertTransactionTypeInitialData(SQLiteDatabase db) {
+        db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
+                TransactionCategoryTable.Sql.getInsertParams(TransactionTable.TypeValues.EXPENSE,"Expense"));
+        db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
+                TransactionCategoryTable.Sql.getInsertParams(TransactionTable.TypeValues.INCOME,"Income"));
+        db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
+                TransactionCategoryTable.Sql.getInsertParams(TransactionTable.TypeValues.TRANSFER_IN,"Transfer In"));
+        db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
+                TransactionCategoryTable.Sql.getInsertParams(TransactionTable.TypeValues.TRANSFER_OUT,"Transfer Out"));
     }
 
     private void insertCategoryInitialData(SQLiteDatabase db) {
@@ -73,10 +105,18 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(TransactionTable.Sql.CREATE_TABLE);
+        dropAllTables(db);
+        onCreate(db);
+    }
+
+    private void dropAllTables(SQLiteDatabase db) {
+        db.execSQL(TransferTable.Sql.DELETE_TABLE);
+        db.execSQL(TransactionTable.Sql.DELETE_TABLE);
+        db.execSQL(TransactionCategoryTable.Sql.DELETE_TABLE);
+        db.execSQL(CategoryTable.Sql.DELETE_TABLE);
+        db.execSQL(CategoryTypeTable.Sql.DELETE_TABLE);
         db.execSQL(AccountTable.Sql.DELETE_TABLE);
         db.execSQL(UserTable.Sql.DELETE_TABLE);
         db.execSQL(AccountTypeTable.Sql.DELETE_TABLE);
-        onCreate(db);
     }
 }
