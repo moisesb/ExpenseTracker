@@ -22,6 +22,7 @@ public abstract class ItemsRecyclerViewAdapter<T> extends RecyclerView.Adapter<V
     private ItemClickListener<T> mItemListener;
 
     public ItemsRecyclerViewAdapter(List<T> items, ItemClickListener<T> itemListener) {
+        super();
         mItems = items;
         mItemListener = itemListener;
     }

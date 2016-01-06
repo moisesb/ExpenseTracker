@@ -1,4 +1,4 @@
-package br.com.borges.moises.expensetracker.db.dao;
+package br.com.borges.moises.expensetracker.db.repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.borges.moises.expensetracker.db.DbSchema.*;
-import br.com.borges.moises.expensetracker.db.helpers.ExpenseTrackerBaseHelper;
+import br.com.borges.moises.expensetracker.db.ExpenseTrackerBaseHelper;
 import br.com.borges.moises.expensetracker.model.Category;
 import br.com.borges.moises.expensetracker.model.CategoryType;
 

@@ -20,7 +20,7 @@ import java.util.List;
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.accountdetail.AccountDetailActivity;
 import br.com.borges.moises.expensetracker.addaccount.AddAccountActivity;
-import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
+import br.com.borges.moises.expensetracker.db.repositories.AccountRepository;
 import br.com.borges.moises.expensetracker.model.Account;
 import br.com.borges.moises.expensetracker.utils.StringUtils;
 import butterknife.Bind;
@@ -130,7 +130,7 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             Context context = parent.getContext();
             LayoutInflater inflater = LayoutInflater.from(context);
-            View accountView = inflater.inflate(R.layout.item_account, parent, false);
+            View accountView = inflater.inflate(R.layout.account_item, parent, false);
 
             return new ViewHolder(accountView, mAccountItemListener);
         }

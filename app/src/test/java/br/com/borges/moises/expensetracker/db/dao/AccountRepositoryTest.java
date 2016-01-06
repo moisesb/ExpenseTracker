@@ -1,4 +1,4 @@
-package br.com.borges.moises.expensetracker.db.dao;
+package br.com.borges.moises.expensetracker.db.repositories;
 
 import android.test.AndroidTestCase;
 

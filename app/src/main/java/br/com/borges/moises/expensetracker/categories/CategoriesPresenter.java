@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import br.com.borges.moises.expensetracker.db.dao.CategoryRepository;
+import br.com.borges.moises.expensetracker.db.repositories.CategoryRepository;
 import br.com.borges.moises.expensetracker.model.Category;
 
 /**

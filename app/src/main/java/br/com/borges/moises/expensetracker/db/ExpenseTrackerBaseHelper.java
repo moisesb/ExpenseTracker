@@ -1,13 +1,8 @@
-package br.com.borges.moises.expensetracker.db.helpers;
+package br.com.borges.moises.expensetracker.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.format.DateUtils;
-
-import java.util.Date;
-
-import br.com.borges.moises.expensetracker.db.DbSchema;
 
 import static br.com.borges.moises.expensetracker.db.DbSchema.*;
 
@@ -60,7 +55,7 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
     private void insertTransactionInitialData(SQLiteDatabase db) {
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
         db.execSQL(TransactionTable.Sql.INSERT_VALUE,
-                TransactionTable.Sql.getInsertParams(1,"Car Insurance",2,354.76 ,date ,1));
+                TransactionTable.Sql.getInsertParams(1, "Car Insurance", 2, 354.76, date, 1));
     }
 
     private void insertTransactionTypeInitialData(SQLiteDatabase db) {
@@ -76,10 +71,10 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
 
     private void insertCategoryInitialData(SQLiteDatabase db) {
         db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(1,"Car",1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(2,"Travel",1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(3,"School",1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(4,"Shopping",1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA,CategoryTable.Sql.getInsertParams(5,"Salary",2));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(2, "Travel", 1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(3, "School", 1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(4, "Shopping", 1));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(5, "Salary", 2));
     }
 
     private void insertCategoryTypeInitialData(SQLiteDatabase db) {

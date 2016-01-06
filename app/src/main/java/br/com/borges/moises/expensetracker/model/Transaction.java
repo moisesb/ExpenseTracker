@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Moisés on 03/12/2015.
  */
-public abstract class Transaction implements Serializable{
+public class Transaction {
     protected int mId;
     protected String mDescription;
     protected double mAmount;
@@ -43,9 +43,4 @@ public abstract class Transaction implements Serializable{
         mAccount = account;
     }
 
-    public abstract void execute();
-
-    public abstract void rollback();
-
-    public abstract boolean isValid();
 }

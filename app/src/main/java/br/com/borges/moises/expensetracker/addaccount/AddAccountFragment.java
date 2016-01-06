@@ -18,8 +18,8 @@ import java.util.List;
 
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.adapters.AccountTypeSpinnerAdapter;
-import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
-import br.com.borges.moises.expensetracker.db.dao.AccountTypeRepository;
+import br.com.borges.moises.expensetracker.db.repositories.AccountRepository;
+import br.com.borges.moises.expensetracker.db.repositories.AccountTypeRepository;
 import br.com.borges.moises.expensetracker.model.AccountType;
 import butterknife.Bind;
 import butterknife.ButterKnife;

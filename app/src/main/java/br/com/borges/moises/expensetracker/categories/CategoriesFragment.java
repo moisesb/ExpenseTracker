@@ -1,9 +1,6 @@
 package br.com.borges.moises.expensetracker.categories;
 
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -20,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.R;
-import br.com.borges.moises.expensetracker.db.dao.CategoryRepository;
+import br.com.borges.moises.expensetracker.db.repositories.CategoryRepository;
 import br.com.borges.moises.expensetracker.model.Category;
 import butterknife.Bind;
 import butterknife.ButterKnife;

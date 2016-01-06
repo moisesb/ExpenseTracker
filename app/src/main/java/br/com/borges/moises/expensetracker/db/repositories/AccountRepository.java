@@ -1,4 +1,4 @@
-package br.com.borges.moises.expensetracker.db.dao;
+package br.com.borges.moises.expensetracker.db.repositories;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.borges.moises.expensetracker.db.DbSchema.AccountTable;
-import br.com.borges.moises.expensetracker.db.helpers.ExpenseTrackerBaseHelper;
+import br.com.borges.moises.expensetracker.db.ExpenseTrackerBaseHelper;
 import br.com.borges.moises.expensetracker.model.Account;
-import br.com.borges.moises.expensetracker.model.AccountType;
 
 /**
  * Created by Moisés on 15/12/2015.

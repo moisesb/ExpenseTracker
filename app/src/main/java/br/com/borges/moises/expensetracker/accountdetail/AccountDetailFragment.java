@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,8 +18,8 @@ import java.util.List;
 
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.adapters.AccountTypeSpinnerAdapter;
-import br.com.borges.moises.expensetracker.db.dao.AccountRepository;
-import br.com.borges.moises.expensetracker.db.dao.AccountTypeRepository;
+import br.com.borges.moises.expensetracker.db.repositories.AccountRepository;
+import br.com.borges.moises.expensetracker.db.repositories.AccountTypeRepository;
 import br.com.borges.moises.expensetracker.model.AccountType;
 import butterknife.Bind;
 import butterknife.ButterKnife;
