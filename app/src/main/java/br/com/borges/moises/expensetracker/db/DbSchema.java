@@ -1,6 +1,7 @@
 package br.com.borges.moises.expensetracker.db;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 /**
  * Created by Moisés on 05/12/2015.
@@ -49,16 +50,20 @@ public class DbSchema {
 
         public static final class Columns {
             public static final String ID = "id";
-            public static final String DESCRIPTION = "description";
+            public static final String ID_WITH_PREFIX = NAME + DOT + ID;
+            public static final String TITLE = "title";
+            public static final String TITLE_WITH_PREFIX = NAME + DOT + TITLE;
             public static final String OPENING_BALANCE = "opening_balance";
+            public static final String OPENING_BALANCE_WITH_PREFIX = NAME + DOT + OPENING_BALANCE;
             public static final String TYPE = "type";
+            public static final String TYPE_WITH_PREFIX = NAME + DOT + TYPE;
         }
 
         public static final class Sql {
             public static final String CREATE_TABLE =
                     "create table if not exists " + NAME + "(" +
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
-                    Columns.DESCRIPTION + COMMA_SEP +
+                    Columns.TITLE + COMMA_SEP +
                     Columns.OPENING_BALANCE + COMMA_SEP +
                     Columns.TYPE + COMMA_SEP +
                     FOREIGN_KEY + "(" + Columns.TYPE + ") " + REFERENCES + " " + AccountTypeTable.NAME + "(" + AccountTypeTable.Columns.ID + "))";
@@ -157,18 +162,24 @@ public class DbSchema {
 
         public static final class Columns {
             public static final String ID = "id";
-            public static final String DETAILS = "details";
+            public static final String ID_WITH_PREFIX = NAME + DOT + ID;
+            public static final String DESCRIPTION = "description";
+            public static final String DESCRIPTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
             public static final String AMOUNT = "amount";
+            public static final String AMOUNT_WITH_PREFIX = NAME + DOT + AMOUNT;
             public static final String DATE = "date";
+            public static final String DATE_WITH_PREFIX = NAME + DOT + DATE;
             public static final String ACCOUNT = "account";
+            public static final String ACCOUNT_WITH_PREFIX = NAME + DOT + ACCOUNT;
             public static final String TYPE = "type";
+            public static final String TYPE_WITH_PREFIX = NAME + DOT + TYPE;
         }
 
         public static final class Sql {
             public static final String CREATE_TABLE =
                     "create table if not exists " + NAME + "(" +
                     Columns.ID + " integer primary key autoincrement" + COMMA_SEP +
-                    Columns.DETAILS + COMMA_SEP +
+                    Columns.DESCRIPTION + COMMA_SEP +
                     Columns.ACCOUNT + COMMA_SEP +
                     Columns.AMOUNT + COMMA_SEP +
                     Columns.DATE + COMMA_SEP +
@@ -180,19 +191,10 @@ public class DbSchema {
 
             public static final String INSERT_VALUE = "insert into " + NAME + " values(?,?,?,?,?,?);";
 
-            public static Object[] getInsertParams(int id, String details, int accountId, double amount, Date date, int typeId) {
+            public static Object[] getInsertParams(int id, String details, int accountId, double amount, String date, int typeId) {
                 return new Object[] {id, details, accountId,  amount, date, typeId};
             }
         }
-
-        public static final class TypeValues {
-            public static final int EXPENSE = 1;
-            public static final int INCOME = 2;
-            public static final int TRANSFER_IN = 3;
-            public static final int TRANSFER_OUT = 4;
-        }
-
-
     }
 
     public static final class TransactionCategoryTable {
@@ -200,7 +202,9 @@ public class DbSchema {
 
         public static final class Columns {
             public static final String ID = "id";
+            public static final String ID_WITH_PREFIX = TransactionCategoryTable.NAME + DOT + ID;
             public static final String NAME = "name";
+            public static final String NAME_WITH_PREFIX = TransactionCategoryTable.NAME + DOT + NAME;
         }
 
         public static final class Sql {
@@ -225,8 +229,11 @@ public class DbSchema {
 
         public static final class Columns {
             public static final String ID = "id";
+            public static final String ID_WITH_PREFIX = NAME + DOT + ID;
             public static final String TRANSFER_IN = "transfer_id";
+            public static final String TRANSFER_IN_WITH_PREFIX = NAME + DOT + TRANSFER_IN;
             public static final String TRANSFER_OUT = "transfer_out";
+            public static final String TRANSFER_OUT_WITH_PREFIX = NAME + DOT + TRANSFER_OUT;
         }
 
         public static final class Sql {

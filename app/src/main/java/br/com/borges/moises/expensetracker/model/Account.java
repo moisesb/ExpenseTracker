@@ -5,15 +5,15 @@ package br.com.borges.moises.expensetracker.model;
  */
 public class Account {
     private int mId;
-    private String mDescription;
+    private String mTitle;
     private double mOpeningBalance;
     private int mType;
 
     public Account() {
     }
 
-    public Account(String description, double openingBalance, int type) {
-        mDescription = description;
+    public Account(String title, double openingBalance, int type) {
+        mTitle = title;
         mOpeningBalance = openingBalance;
         mType = type;
     }
@@ -26,12 +26,12 @@ public class Account {
         mId = id;
     }
 
-    public String getDescription() {
-        return mDescription;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setDescription(String description) {
-        mDescription = description;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
     public double getOpeningBalance() {

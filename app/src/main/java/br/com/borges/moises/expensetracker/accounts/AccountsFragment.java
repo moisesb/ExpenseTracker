@@ -178,7 +178,7 @@ public class AccountsFragment extends Fragment implements AccountsContract.View{
 
         public void bindAccount(Account account) {
             mAccount = account;
-            mdescriptionTextView.setText(mAccount.getDescription());
+            mdescriptionTextView.setText(mAccount.getTitle());
             mTypeTextView.setText(String.valueOf(mAccount.getType()));
             mBalanceTextView.setText(String.valueOf(StringUtils.convertDoubleToStringWithCurrency(mAccount.getOpeningBalance())));
         }

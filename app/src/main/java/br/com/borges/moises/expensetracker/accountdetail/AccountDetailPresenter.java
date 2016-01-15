@@ -35,7 +35,7 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
         List<AccountType> accountTypes = mAccountTypeRepository.getAccountTypes();
         mView.showAccountTypes(accountTypes);
 
-        mView.setAccountDescription(mAccount.getDescription());
+        mView.setAccountDescription(mAccount.getTitle());
         mView.setAccountOpeningBalance(StringUtils.convertDoubleToString(mAccount.getOpeningBalance()));
         mView.setAccountType(mAccount.getType());
         mView.setCurrentBalance(StringUtils.convertDoubleToString(mAccount.getOpeningBalance()));
@@ -57,7 +57,7 @@ public class AccountDetailPresenter implements AccountDetailContract.UserActions
     @Override
     public void updateAccount(int accountId, String description, int type, String openingBalance) {
         Account updatedAccount = new Account();
-        updatedAccount.setDescription(description);
+        updatedAccount.setTitle(description);
         updatedAccount.setType(type);
         updatedAccount.setOpeningBalance(StringUtils.convertStringToDouble(openingBalance));
         updatedAccount.setId(accountId);

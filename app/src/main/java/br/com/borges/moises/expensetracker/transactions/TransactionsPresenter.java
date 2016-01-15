@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.borges.moises.expensetracker.db.repositories.TransactionRepository;
 import br.com.borges.moises.expensetracker.model.Transaction;
+import br.com.borges.moises.expensetracker.model.TransactionType;
 
 /**
  * Created by moise on 06/01/2016.
@@ -23,7 +24,7 @@ public class TransactionsPresenter implements TransactionsContract.UserActionsLi
 
     @Override
     public void loadTransactions() {
-        List<Transaction> transactions = mTransactionRepository.getTransactions();
+        List<Transaction> transactions = mTransactionRepository.getTransactions(TransactionType.EXPENSE.getValue());
         mView.showTransactions(transactions);
     }
 

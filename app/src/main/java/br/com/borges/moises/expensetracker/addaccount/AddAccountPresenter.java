@@ -40,7 +40,7 @@ public class AddAccountPresenter implements UserActionsListener {
                 !openingBalance.isEmpty() &&
                 accountType > -1) {
             Account account = new Account();
-            account.setDescription(description);
+            account.setTitle(description);
             account.setOpeningBalance(StringUtils.convertStringToDouble(openingBalance));
             account.setType(accountType);
             mAccountRepository.addAccount(account);

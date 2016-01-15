@@ -56,7 +56,7 @@ public class AccountRepository{
     private Account getAccount(Cursor cursor) {
         Account account = new Account();
         account.setId(cursor.getInt(cursor.getColumnIndex(AccountTable.Columns.ID)));
-        account.setDescription(cursor.getString(cursor.getColumnIndex(AccountTable.Columns.DESCRIPTION)));
+        account.setTitle(cursor.getString(cursor.getColumnIndex(AccountTable.Columns.TITLE)));
         account.setOpeningBalance(cursor.getDouble(cursor.getColumnIndex(AccountTable.Columns.OPENING_BALANCE)));
         account.setType(cursor.getInt(cursor.getColumnIndex(AccountTable.Columns.TYPE)));
         return account;
@@ -112,7 +112,7 @@ public class AccountRepository{
     @NonNull
     private ContentValues getContentValues(Account account) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(AccountTable.Columns.DESCRIPTION, account.getDescription());
+        contentValues.put(AccountTable.Columns.TITLE, account.getTitle());
         contentValues.put(AccountTable.Columns.TYPE, account.getType());
         contentValues.put(AccountTable.Columns.OPENING_BALANCE, account.getOpeningBalance());
         return contentValues;

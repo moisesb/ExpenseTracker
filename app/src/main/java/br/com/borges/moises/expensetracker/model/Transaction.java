@@ -1,15 +1,18 @@
 package br.com.borges.moises.expensetracker.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Moisés on 03/12/2015.
  */
 public class Transaction {
-    protected int mId;
-    protected String mDescription;
-    protected double mAmount;
-    protected Account mAccount;
+    private int mId;
+    private String mDescription;
+    private double mAmount;
+    private Account mAccount;
+    private Date mDate;
+    private TransactionType mType;
 
     public int getId() {
         return mId;
@@ -43,4 +46,19 @@ public class Transaction {
         mAccount = account;
     }
 
+    public Date getDate() {
+        return mDate;
+    }
+
+    public void setDate(Date date) {
+        mDate = date;
+    }
+
+    public TransactionType getType() {
+        return mType;
+    }
+
+    public void setType(TransactionType type) {
+        mType = type;
+    }
 }
