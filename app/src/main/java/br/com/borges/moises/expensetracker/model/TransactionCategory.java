@@ -6,13 +6,13 @@ import java.util.Map;
 /**
  * Created by moise on 11/01/2016.
  */
-public enum TransactionType {
+public enum TransactionCategory {
     INCOME(2), EXPENSE(1), TRANSFER_IN(3), TRANSFER_OUT(4);
 
     private final int value;
-    private static Map<Integer,TransactionType> sMap;
+    private static Map<Integer,TransactionCategory> sMap;
 
-    TransactionType(int value) {
+    TransactionCategory(int value) {
         this.value = value;
     }
 
@@ -20,11 +20,11 @@ public enum TransactionType {
         return value;
     }
 
-    public static TransactionType fromId(int id) {
+    public static TransactionCategory fromId(int id) {
         if (sMap == null) {
             sMap = new HashMap<>();
-            for (TransactionType transactionType: TransactionType.values()) {
-                sMap.put(transactionType.getValue(),transactionType);
+            for (TransactionCategory transactionCategory : TransactionCategory.values()) {
+                sMap.put(transactionCategory.getValue(), transactionCategory);
             }
         }
 

@@ -9,6 +9,7 @@
 
     <include
         android:id="@+id/single_fragment_toolbar"
+        android:elevation="@dimen/toolbar_elevation"
         layout="@layout/layout_app_toolbar"/>
 
     <FrameLayout

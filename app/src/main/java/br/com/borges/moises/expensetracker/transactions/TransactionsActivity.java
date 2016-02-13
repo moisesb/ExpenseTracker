@@ -10,6 +10,6 @@ import br.com.borges.moises.expensetracker.sharedUI.SingleFragmentWithFabActivit
 public class TransactionsActivity extends SingleFragmentWithFabActivity {
     @Override
     protected Fragment getFragment() {
-        return TransactionFragment.newInstance();
+        return TransactionsFragment.newInstance();
     }
 }

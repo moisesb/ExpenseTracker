@@ -25,4 +25,12 @@
     <string name="add_account_activity">Add Account</string>
     <string name="categories_activity">Categories</string>
     <string name="transactions_activity">Transactions</string>
+    <string name="account_title">Title</string>
+    <string name="expense_tab_title">Expense</string>
+    <string name="new_transaction_activity">New Transaction</string>
+    <string name="income_tab_title">Income</string>
+    <string name="transfer_tab_title">Transfer</string>
+    <string name="account">Account</string>
+    <string name="category">Category</string>
+    <string name="separator">|</string>
 </resources>

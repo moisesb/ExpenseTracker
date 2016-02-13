@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/description_img"
+        android:src="@drawable/ic_description_black_24dp"
+        android:paddingTop="@dimen/first_field_padding_top"
+        android:paddingLeft="@dimen/field_padding_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/expense_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:layout_toRightOf="@+id/description_img"/>
+
+    <ImageView
+        android:id="@+id/date_img"
+        android:src="@drawable/ic_today_black_24dp"
+        android:paddingTop="@dimen/first_field_padding_top"
+        android:paddingLeft="@dimen/field_padding_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_img"/>
+
+    <EditText
+        android:id="@+id/expense_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="false"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:layout_below="@+id/expense_description"
+        android:layout_toRightOf="@+id/date_img"/>
+
+    <ImageView
+        android:id="@+id/amount_img"
+        android:src="@drawable/ic_currency_usd_black_24dp"
+        android:paddingTop="@dimen/first_field_padding_top"
+        android:paddingLeft="@dimen/field_padding_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_img"/>
+
+    <EditText
+        android:id="@+id/expense_amount"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.-"
+        android:layout_below="@+id/expense_date"
+        android:layout_toRightOf="@+id/amount_img"/>
+
+
+    <TextView
+        android:id="@+id/account_title"
+        android:text="@string/account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/first_field_padding_top"
+        android:paddingLeft="@dimen/field_padding_left"
+        android:layout_below="@+id/amount_img"/>
+
+
+    <Spinner
+        android:id="@+id/expense_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_title"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginRight="@dimen/field_padding_right"> </Spinner>
+
+    <TextView
+        android:id="@+id/category_title"
+        android:text="@string/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/first_field_padding_top"
+        android:paddingLeft="@dimen/field_padding_left"
+        android:layout_below="@+id/expense_account"/>
+
+    <Spinner
+        android:id="@+id/expense_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:layout_below="@+id/category_title"></Spinner>
+</RelativeLayout>

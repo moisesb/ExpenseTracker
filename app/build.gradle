@@ -23,6 +23,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
+    // Material Design DatePicker
+    compile 'com.wdullaer:materialdatetimepicker:2.1.1'
+
     // DI container
     compile 'com.jakewharton:butterknife:7.0.1'
 

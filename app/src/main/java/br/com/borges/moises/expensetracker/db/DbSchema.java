@@ -3,6 +3,8 @@ package br.com.borges.moises.expensetracker.db;
 
 import java.util.Date;
 
+import br.com.borges.moises.expensetracker.model.Category;
+
 /**
  * Created by Moisés on 05/12/2015.
  */
@@ -100,12 +102,12 @@ public class DbSchema {
         public static final String NAME = "categories";
 
         public static final class Columns {
-            public static final String ID = "id";
+            public static final String ID = "_id";
             public static final String ID_WITH_PREFIX = NAME + DOT + ID;
             public static final String TYPE = "type";
             public static final String TYPE_WITH_PREFIX = NAME + DOT + TYPE;
             public static final String DESCRIPTION = "description";
-            public static final String DESCRIPTTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
+            public static final String DESCRIPTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
         }
 
         public static final class Sql {
@@ -130,7 +132,7 @@ public class DbSchema {
         public static final String NAME = "categorytypes";
 
         public static final class Columns {
-            public static final String ID = "id";
+            public static final String ID = "_id";
             public static final String ID_WITH_PREFIX = NAME + DOT + ID;
             public static final String DESCRIPTION = "description";
             public static final String DESCRIPTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
@@ -161,7 +163,7 @@ public class DbSchema {
         public static final String NAME = "transactions";
 
         public static final class Columns {
-            public static final String ID = "id";
+            public static final String ID = "_id";
             public static final String ID_WITH_PREFIX = NAME + DOT + ID;
             public static final String DESCRIPTION = "description";
             public static final String DESCRIPTION_WITH_PREFIX = NAME + DOT + DESCRIPTION;
@@ -173,6 +175,8 @@ public class DbSchema {
             public static final String ACCOUNT_WITH_PREFIX = NAME + DOT + ACCOUNT;
             public static final String TYPE = "type";
             public static final String TYPE_WITH_PREFIX = NAME + DOT + TYPE;
+            public static final String CATEGORY = "category";
+            public static final String CATEGORY_WITH_PREFIX = NAME + DOT + CATEGORY;
         }
 
         public static final class Sql {
@@ -184,15 +188,17 @@ public class DbSchema {
                     Columns.AMOUNT + COMMA_SEP +
                     Columns.DATE + COMMA_SEP +
                     Columns.TYPE + COMMA_SEP +
+                    Columns.CATEGORY + COMMA_SEP +
+                    FOREIGN_KEY + "(" + Columns.CATEGORY + ")" + REFERENCES + " " + CategoryTable.NAME + "(" + CategoryTable.Columns.ID + ")" + COMMA_SEP +
                     FOREIGN_KEY + "(" + Columns.ACCOUNT + ") " + REFERENCES + " " + AccountTable.NAME + "(" + AccountTable.Columns.ID + ")" + COMMA_SEP +
                     FOREIGN_KEY + "(" + Columns.TYPE + ") " + REFERENCES + " " + TransactionCategoryTable.NAME + "(" + TransactionCategoryTable.Columns.ID + "))";
 
             public static final String DELETE_TABLE = "drop table if exists " + NAME;
 
-            public static final String INSERT_VALUE = "insert into " + NAME + " values(?,?,?,?,?,?);";
+            public static final String INSERT_VALUE = "insert into " + NAME + " values(?,?,?,?,?,?,?);";
 
-            public static Object[] getInsertParams(int id, String details, int accountId, double amount, String date, int typeId) {
-                return new Object[] {id, details, accountId,  amount, date, typeId};
+            public static Object[] getInsertParams(int id, String details, int accountId, double amount, String date, int typeId, int categoryId) {
+                return new Object[] {id, details, accountId,  amount, date, typeId, categoryId};
             }
         }
     }

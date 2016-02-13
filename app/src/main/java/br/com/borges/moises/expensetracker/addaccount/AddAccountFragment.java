@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  */
 public class AddAccountFragment extends Fragment implements AddAccountContract.View{
 
-    @Bind(R.id.description_edit_text)
+    @Bind(R.id.title_edit_text)
     EditText mDescriptionEditText;
 
     @Bind(R.id.opening_balance_edit_text)

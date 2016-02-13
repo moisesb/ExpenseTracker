@@ -28,7 +28,7 @@ public class CategoryRepository {
     private static final String AS = " as ";
     private static final String COMMA_SEP = ",";
     private static final String COLUMNS = CategoryTable.Columns.ID_WITH_PREFIX + AS + CATEGORY_ID + COMMA_SEP +
-            CategoryTable.Columns.DESCRIPTTION_WITH_PREFIX + AS + CATEGORY_DESCRIPTION + COMMA_SEP +
+            CategoryTable.Columns.DESCRIPTION_WITH_PREFIX + AS + CATEGORY_DESCRIPTION + COMMA_SEP +
             CategoryTable.Columns.TYPE_WITH_PREFIX + AS + CARTEGORY_TYPE + COMMA_SEP +
             CategoryTypeTable.Columns.DESCRIPTION_WITH_PREFIX + AS + CATEGORY_TYPE_DESCRIPTION;
 

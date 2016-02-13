@@ -1,6 +1,5 @@
 package br.com.borges.moises.expensetracker.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +10,9 @@ public class Transaction {
     private String mDescription;
     private double mAmount;
     private Account mAccount;
+    private Category mCategory;
     private Date mDate;
-    private TransactionType mType;
+    private TransactionCategory mType;
 
     public int getId() {
         return mId;
@@ -54,11 +54,19 @@ public class Transaction {
         mDate = date;
     }
 
-    public TransactionType getType() {
+    public TransactionCategory getType() {
         return mType;
     }
 
-    public void setType(TransactionType type) {
+    public void setType(TransactionCategory type) {
         mType = type;
+    }
+
+    public Category getCategory() {
+        return mCategory;
+    }
+
+    public void setCategory(Category category) {
+        mCategory = category;
     }
 }

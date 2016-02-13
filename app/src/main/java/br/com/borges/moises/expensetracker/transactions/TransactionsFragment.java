@@ -9,10 +9,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +26,17 @@ import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.adapters.ItemClickListener;
 import br.com.borges.moises.expensetracker.adapters.ItemsRecyclerViewAdapter;
 import br.com.borges.moises.expensetracker.adapters.ViewHolder;
+import br.com.borges.moises.expensetracker.addtransaction.AddTransactionActivity;
 import br.com.borges.moises.expensetracker.db.repositories.TransactionRepository;
 import br.com.borges.moises.expensetracker.model.Transaction;
+import br.com.borges.moises.expensetracker.utils.DateUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by moise on 06/01/2016.
  */
-public class TransactionFragment extends Fragment implements TransactionsContract.View, ItemClickListener<Transaction>{
+public class TransactionsFragment extends Fragment implements TransactionsContract.View, ItemClickListener<Transaction>{
 
     @Bind(R.id.items_list_recycler_view)
     RecyclerView mRecyclerView;
@@ -40,12 +47,13 @@ public class TransactionFragment extends Fragment implements TransactionsContrac
     private TransactionRecyclerViewAdapter mAdapter = new TransactionRecyclerViewAdapter(new ArrayList<Transaction>(0), this);
 
     public static Fragment newInstance() {
-        return new TransactionFragment();
+        return new TransactionsFragment();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);
         mUserActionsListener = new TransactionsPresenter(this,
                 TransactionRepository.getTransactionRepository(getActivity()));
     }
@@ -73,11 +81,29 @@ public class TransactionFragment extends Fragment implements TransactionsContrac
                 mUserActionsListener.addTransaction();
             }
         });
-
-
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_transactions, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_action_filter_transactions:
+                return openFilterDialog();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    private boolean openFilterDialog() {
+        Log.d("Transactions","Open filter dialog");
+        return true;
+    }
 
     @Override
     public void showTransactions(List<Transaction> transtions) {
@@ -92,6 +118,7 @@ public class TransactionFragment extends Fragment implements TransactionsContrac
     @Override
     public void showAddTransaction() {
         Log.d("Transactions", "add new transaction");
+        startActivity(AddTransactionActivity.newIntent(getContext()));
     }
 
     @Override
@@ -122,8 +149,19 @@ public class TransactionFragment extends Fragment implements TransactionsContrac
         @Bind(R.id.transaction_description_text_view)
         TextView mDescriptionTextView;
 
-        @Bind(R.id.transactiomn_amount_text_view)
+        @Bind(R.id.transaction_amount_text_view)
         TextView mAmountTextView;
+
+        @Bind(R.id.transaction_category_text_view)
+        TextView mCategoryTextView;
+
+        @Bind(R.id.transaction_account_text_view)
+        TextView mAccountTextView;
+
+        @Bind(R.id.transaction_date_text_view)
+        TextView mDateTextView;
+
+        private DateUtils mDateUtils = new DateUtils();
 
         public TransactionViewHolder(View itemView, ItemClickListener<Transaction> itemClickListener) {
             super(itemView, itemClickListener);
@@ -137,7 +175,12 @@ public class TransactionFragment extends Fragment implements TransactionsContrac
         @Override
         protected void bindItemWithView(Transaction transaction) {
             mDescriptionTextView.setText(transaction.getDescription());
-            mAmountTextView.setText(String.valueOf(transaction.getAmount()));
+            NumberFormat format = NumberFormat.getCurrencyInstance();
+            mAmountTextView.setText(format.format(transaction.getAmount()));
+            mCategoryTextView.setText(transaction.getCategory().getDescription());
+            mAccountTextView.setText(transaction.getAccount().getTitle());
+            mDateTextView.setText(mDateUtils.getDateStr(transaction.getDate()));
+
         }
     }
 }

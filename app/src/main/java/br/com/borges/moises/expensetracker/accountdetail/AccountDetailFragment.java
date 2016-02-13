@@ -30,7 +30,7 @@ public class AccountDetailFragment extends Fragment implements AccountDetailCont
 
     private int mAccountId;
 
-    @Bind(R.id.description_edit_text)
+    @Bind(R.id.title_edit_text)
     EditText mDescritionEditText;
 
     @Bind(R.id.opening_balance_edit_text)

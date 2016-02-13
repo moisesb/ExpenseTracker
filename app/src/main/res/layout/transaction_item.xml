@@ -1,34 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                xmlns:tools="http://schemas.android.com/tools">
+                android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/transaction_img"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/first_field_padding_top"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginStart="@dimen/field_padding_left"
+        android:background="@drawable/circle"/>
 
-        <TextView
-            android:id="@+id/transaction_description_text_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingLeft="15dp"
-            android:textSize="20sp"
-            tools:text="Car Insurance"/>
+    <TextView
+        android:id="@+id/transaction_description_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/transaction_img"
+        android:layout_toRightOf="@+id/transaction_img"
+        android:layout_marginTop="@dimen/first_field_padding_top"
+        android:layout_marginStart="@dimen/field_padding_left"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:textSize="20sp"
+        tools:text="Car Insurance"/>
 
-        <TextView
-            android:id="@+id/transactiomn_amount_text_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            tools:text="354.34"/>
+    <TextView
+        android:id="@+id/transaction_category_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transaction_description_text_view"
+        android:layout_alignLeft="@+id/transaction_description_text_view"
+        android:layout_alignStart="@+id/transaction_description_text_view"
+        tools:text="Car"/>
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/transaction_separator_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/transaction_category_text_view"
+        android:layout_toEndOf="@+id/transaction_category_text_view"
+        android:layout_alignTop="@+id/transaction_category_text_view"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginStart="@dimen/field_padding_left"
+        android:text="@string/separator"/>
+
+    <TextView
+        android:id="@+id/transaction_account_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/transaction_separator_text_view"
+        android:layout_toEndOf="@+id/transaction_separator_text_view"
+        android:layout_alignTop="@+id/transaction_separator_text_view"
+        android:layout_marginLeft="@dimen/field_padding_left"
+        android:layout_marginStart="@dimen/field_padding_left"
+        tools:text="My Wallet"/>
+
+    <TextView
+        android:id="@+id/transaction_amount_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/first_field_padding_top"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:layout_marginEnd="@dimen/field_padding_right"
+        android:textSize="20sp"
+        tools:text="354.34"/>
+
+    <TextView
+        android:id="@+id/transaction_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transaction_amount_text_view"
+        android:layout_marginRight="@dimen/field_padding_right"
+        android:layout_alignParentRight="true"
+        tools:text="12/02/2016"/>
 
 
-
-</LinearLayout>
+</RelativeLayout>

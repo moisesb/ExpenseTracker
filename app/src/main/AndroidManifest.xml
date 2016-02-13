@@ -28,6 +28,11 @@
                   android:theme="@style/AppTheme">
         </activity>
 
+        <activity android:name=".addtransaction.AddTransactionActivity"
+                  android:label="@string/new_transaction_activity"
+                  android:theme="@style/AppTheme">
+        </activity>
+
         <activity android:name=".transactions.TransactionsActivity"
                   android:label="@string/transactions_activity"
                   android:theme="@style/AppTheme">

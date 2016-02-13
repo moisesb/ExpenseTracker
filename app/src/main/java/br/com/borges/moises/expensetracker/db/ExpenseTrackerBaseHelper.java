@@ -4,12 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import br.com.borges.moises.expensetracker.model.TransactionType;
+import br.com.borges.moises.expensetracker.model.TransactionCategory;
 
 import static br.com.borges.moises.expensetracker.db.DbSchema.*;
 
@@ -61,20 +56,20 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
 
     private void insertTransactionInitialData(SQLiteDatabase db) {
         db.execSQL(TransactionTable.Sql.INSERT_VALUE,
-                TransactionTable.Sql.getInsertParams(1, "Car Insurance", 2, 354.76, "2016-01-02", 1));
+                TransactionTable.Sql.getInsertParams(1, "Car Insurance", 2, 354.76, "2016-01-02", 1, 1));
         db.execSQL(TransactionTable.Sql.INSERT_VALUE,
-                TransactionTable.Sql.getInsertParams(2, "Lunch", 2, 25.00, "2016-01-14", 1));
+                TransactionTable.Sql.getInsertParams(2, "Lunch", 2, 25.00, "2016-01-14", 1, 1));
     }
 
     private void insertTransactionTypeInitialData(SQLiteDatabase db) {
         db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
-                TransactionCategoryTable.Sql.getInsertParams(TransactionType.EXPENSE.getValue(), "Expense"));
+                TransactionCategoryTable.Sql.getInsertParams(TransactionCategory.EXPENSE.getValue(), "Expense"));
         db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
-                TransactionCategoryTable.Sql.getInsertParams(TransactionType.INCOME.getValue(), "Income"));
+                TransactionCategoryTable.Sql.getInsertParams(TransactionCategory.INCOME.getValue(), "Income"));
         db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
-                TransactionCategoryTable.Sql.getInsertParams(TransactionType.TRANSFER_IN.getValue(), "Transfer In"));
+                TransactionCategoryTable.Sql.getInsertParams(TransactionCategory.TRANSFER_IN.getValue(), "Transfer In"));
         db.execSQL(TransactionCategoryTable.Sql.INSERT_VALUES,
-                TransactionCategoryTable.Sql.getInsertParams(TransactionType.TRANSFER_OUT.getValue(), "Transfer Out"));
+                TransactionCategoryTable.Sql.getInsertParams(TransactionCategory.TRANSFER_OUT.getValue(), "Transfer Out"));
     }
 
     private void insertCategoryInitialData(SQLiteDatabase db) {
