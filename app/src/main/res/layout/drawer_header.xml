@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/status_bar"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_circle"
+        android:src="@drawable/ic_account_grey600_36dp"
+        android:padding="5dp"
+        android:layout_marginTop="@dimen/nav_drawer_top_margin"
+        android:layout_marginLeft="@dimen/nav_drawer_left_margin"/>
+
+
+    <TextView
+        android:id="@+id/user_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_avatar"
+        android:layout_marginTop="5dp"
+        android:textSize="@dimen/nav_drawer_text_size"
+        android:textColor="@color/mdtp_white"
+        android:layout_marginLeft="@dimen/nav_drawer_left_margin"
+        tools:text="Hello Drawer !!!"/>
+
+    <TextView
+        android:id="@+id/user_email_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_name_text_view"
+        android:layout_marginLeft="@dimen/nav_drawer_left_margin"
+        android:textSize="@dimen/nav_drawer_text_size"
+        android:textColor="@color/mdtp_white"
+        tools:text="Another TV"/>
+
+</RelativeLayout>

@@ -33,4 +33,8 @@
     <string name="account">Account</string>
     <string name="category">Category</string>
     <string name="separator">|</string>
+    <string name="dashboard_activity">Expense Tracker</string>
+    <string name="categories">Categories</string>
+    <string name="accounts">Accounts</string>
+    <string name="transactions">Transactions</string>
 </resources>

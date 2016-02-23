@@ -1,10 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="br.com.borges.moises.expensetracker.DashboardActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="br.com.borges.moises.expensetracker.DashboardActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_accounts"
+            android:checked="true"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:title="@string/accounts"/>
+        <item
+            android:id="@+id/navigation_categories"
+            android:icon="@drawable/ic_menu_black_24dp"
+            android:title="@string/categories"/>
+        <item
+            android:id="@+id/navigation_transactions"
+            android:icon="@drawable/ic_menu_black_24dp"
+            android:title="@string/transactions"/>
+    </group>
 </menu>

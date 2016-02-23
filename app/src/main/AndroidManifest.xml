@@ -36,6 +36,11 @@
         <activity android:name=".transactions.TransactionsActivity"
                   android:label="@string/transactions_activity"
                   android:theme="@style/AppTheme">
+        </activity>
+
+        <activity android:name=".dashboard.DashboardActivity"
+                  android:label="@string/dashboard_activity"
+                  android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
