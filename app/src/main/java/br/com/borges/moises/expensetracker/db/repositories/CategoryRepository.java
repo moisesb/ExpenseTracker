@@ -96,17 +96,15 @@ public class CategoryRepository {
         Category category = new Category();
         category.setId(cursor.getInt(cursor.getColumnIndex(CATEGORY_ID)));
         category.setDescription(cursor.getString(cursor.getColumnIndex(CATEGORY_DESCRIPTION)));
-        category.setCategoryTypeId(cursor.getInt(cursor.getColumnIndex(CATEGORY_TYPE_DESCRIPTION)));
-        int typeId = cursor.getInt(cursor.getColumnIndex(CATEGORY_TYPE_DESCRIPTION));
-        switch (typeId) {
-            case CategoryTypeTable.Values.EXPENSE_ID:
-                category.setCategoryType(CategoryType.EXPENSE);
-                break;
-            case CategoryTypeTable.Values.INCOME_ID:
-                category.setCategoryType(CategoryType.INCOME);
-                break;
-            default:
-                Log.d("CategoryType","Category with type_id " + typeId + " found");
+        category.setCategoryTypeId(cursor.getInt(cursor.getColumnIndex(CARTEGORY_TYPE)));
+        int typeId = cursor.getInt(cursor.getColumnIndex(CARTEGORY_TYPE));
+
+        if (typeId == CategoryType.EXPENSE.getValue()) {
+            category.setCategoryType(CategoryType.EXPENSE);
+        }else if (typeId == CategoryType.INCOME.getValue()){
+            category.setCategoryType(CategoryType.INCOME);
+        }else {
+            Log.d("CategoryType","Category with type_id " + typeId + " found");
         }
         return category;
     }
@@ -127,11 +125,7 @@ public class CategoryRepository {
         return getCategories(mQueryAllCategories, new String[]{});
     }
 
-    public List<Category> getExpenseCategories() {
-        return getCategories(mQueryCategoryTypes, new String[]{String.valueOf(CategoryTypeTable.Values.EXPENSE_ID)});
-    }
-
-    public List<Category> getIncomeCategories() {
-        return getCategories(mQueryCategoryTypes, new String[]{String.valueOf(CategoryTypeTable.Values.INCOME_ID)});
+    public List<Category> getCategories(CategoryType categoryType) {
+        return getCategories(mQueryCategoryTypes, new String[] {String.valueOf(categoryType.getValue())});
     }
 }

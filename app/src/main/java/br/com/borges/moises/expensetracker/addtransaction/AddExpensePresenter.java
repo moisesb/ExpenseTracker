@@ -41,7 +41,7 @@ public class AddExpensePresenter implements AddExpenseContract.UserActionsListen
 
     @Override
     public void loadInitialData() {
-        List<Category> categories = mCategoryRepository.getExpenseCategories();
+        List<Category> categories = mCategoryRepository.getCategories(CategoryType.EXPENSE);
         List<Account> accounts = mAccountRepository.getAccounts();
         mView.setAccountsAdapter(accounts);
         mView.setCategoriesAdapter(categories);

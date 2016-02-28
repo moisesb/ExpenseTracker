@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import br.com.borges.moises.expensetracker.model.CategoryType;
 import br.com.borges.moises.expensetracker.model.TransactionCategory;
 
 import static br.com.borges.moises.expensetracker.db.DbSchema.*;
@@ -73,11 +74,11 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertCategoryInitialData(SQLiteDatabase db) {
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(1, "Car", 1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(2, "Travel", 1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(3, "School", 1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(4, "Shopping", 1));
-        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(5, "Salary", 2));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(1, "Car", CategoryType.EXPENSE.getValue()));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(2, "Travel", CategoryType.EXPENSE.getValue()));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(3, "School", CategoryType.EXPENSE.getValue()));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(4, "Shopping", CategoryType.EXPENSE.getValue()));
+        db.execSQL(CategoryTable.Sql.INSERT_INITIAL_DATA, CategoryTable.Sql.getInsertParams(5, "Salary", CategoryType.INCOME.getValue()));
     }
 
     private void insertCategoryTypeInitialData(SQLiteDatabase db) {

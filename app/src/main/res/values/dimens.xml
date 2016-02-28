@@ -7,10 +7,12 @@
     <dimen name="first_field_padding_top">15dp</dimen>
     <dimen name="field_padding_left">10dp</dimen>
     <dimen name="field_padding_right">10dp</dimen>
+    <dimen name="category_description_margim_top">20dp</dimen>
     <dimen name="circle_background_diameter">40dp</dimen>
     <dimen name="nav_drawer_left_margin">16dp</dimen>
     <dimen name="avatar_background_diameter">72dp</dimen>
     <dimen name="nav_drawer_top_margin">30dp</dimen>
     <dimen name="status_bar">24dp</dimen>
     <dimen name="nav_drawer_text_size">15dp</dimen>
+    <dimen name="main_text_size">20dp</dimen>
 </resources>

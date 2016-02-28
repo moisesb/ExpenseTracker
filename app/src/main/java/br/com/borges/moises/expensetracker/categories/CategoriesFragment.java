@@ -1,7 +1,10 @@
 package br.com.borges.moises.expensetracker.categories;
 
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,7 +23,10 @@ import java.util.List;
 import br.com.borges.moises.expensetracker.R;
 import br.com.borges.moises.expensetracker.db.repositories.CategoryRepository;
 import br.com.borges.moises.expensetracker.model.Category;
+import br.com.borges.moises.expensetracker.model.CategoryType;
 import butterknife.Bind;
+import butterknife.BindColor;
+import butterknife.BindDrawable;
 import butterknife.ButterKnife;
 
 /**
@@ -27,8 +34,12 @@ import butterknife.ButterKnife;
  */
 public class CategoriesFragment extends Fragment implements CategoriesContract.View{
 
+    private static final String CATEGORY_TYPE_PARAM = "br.com.borges.moises.expensetracker.categories.CategoryType";
+
     @Bind(R.id.items_list_recycler_view)
     RecyclerView mRecyclerView;
+
+    private CategoryType mCategoryType;
 
     private FloatingActionButton mAddFloatingActionButton;
     private CategoriesContract.UserActionsListener mUserActionsListener;
@@ -42,8 +53,23 @@ public class CategoriesFragment extends Fragment implements CategoriesContract.V
     private CategoryAdapter mAdapter =
             new CategoryAdapter(new ArrayList<Category>(0),mOnItemClickListener);
 
-    public static CategoriesFragment newInstance() {
-        return new CategoriesFragment();
+    public static CategoriesFragment newInstance(@NonNull CategoryType categoryType) {
+        CategoriesFragment fragment = new CategoriesFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable(CATEGORY_TYPE_PARAM,categoryType);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mCategoryType = (CategoryType) getArguments().getSerializable(CATEGORY_TYPE_PARAM);
+        }
     }
 
     @Nullable
@@ -56,11 +82,11 @@ public class CategoriesFragment extends Fragment implements CategoriesContract.V
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
 
-        mAddFloatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.add_item_fab);
+        mAddFloatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         mAddFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUserActionsListener.addCategory();
+                mUserActionsListener.addCategory(mCategoryType);
             }
         });
         return view;
@@ -76,7 +102,7 @@ public class CategoriesFragment extends Fragment implements CategoriesContract.V
     @Override
     public void onResume() {
         super.onResume();
-        mUserActionsListener.loadCategories();
+        mUserActionsListener.loadCategories(mCategoryType);
     }
 
     @Override
@@ -138,6 +164,15 @@ public class CategoriesFragment extends Fragment implements CategoriesContract.V
         @Bind(R.id.category_description_text_view)
         TextView mDescriptionTextView;
 
+        @Bind(R.id.category_img)
+        ImageView mImageView;
+
+        @BindColor(R.color.lightGreen)
+        int mLightGreen;
+
+        @BindColor(R.color.red)
+        int mRed;
+
         private Category mCategory;
         private OnItemClickListener mOnItemClickListener;
 
@@ -151,6 +186,16 @@ public class CategoriesFragment extends Fragment implements CategoriesContract.V
         public void bindCategory(Category category) {
             mCategory = category;
             mDescriptionTextView.setText(category.getDescription());
+
+            GradientDrawable drawable = (GradientDrawable) mImageView.getBackground();
+            switch (mCategory.getCategoryType()) {
+                case EXPENSE:
+                    drawable.setColor(mRed);
+                    break;
+                case INCOME:
+                    drawable.setColor(mLightGreen);
+                    break;
+            }
         }
 
         @Override

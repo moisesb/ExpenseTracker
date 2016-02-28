@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.borges.moises.expensetracker.db.repositories.CategoryRepository;
 import br.com.borges.moises.expensetracker.model.Category;
+import br.com.borges.moises.expensetracker.model.CategoryType;
 
 /**
  * Created by moise on 30/12/2015.
@@ -22,13 +23,13 @@ public class CategoriesPresenter implements CategoriesContract.UserActionsListen
     }
 
     @Override
-    public void loadCategories() {
-        List<Category> categories = mCategoryRepository.getCategories();
+    public void loadCategories(@NonNull CategoryType categoryType) {
+        List<Category> categories = mCategoryRepository.getCategories(categoryType);
         mView.showCategories(categories);
     }
 
     @Override
-    public void addCategory() {
+    public void addCategory(@NonNull CategoryType categoryType) {
         mView.showAddCategory();
     }
 
