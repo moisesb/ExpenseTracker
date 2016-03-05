@@ -39,4 +39,6 @@
     <string name="transactions">Transactions</string>
     <string name="dashboard_drawer_open">Open Navigation Menu</string>
     <string name="dashboard_drawer_close">Close Navigation Menu</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

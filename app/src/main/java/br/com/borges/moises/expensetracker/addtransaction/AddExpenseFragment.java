@@ -25,6 +25,7 @@ import br.com.borges.moises.expensetracker.adapters.ItemClickListener;
 import br.com.borges.moises.expensetracker.db.repositories.AccountRepository;
 import br.com.borges.moises.expensetracker.db.repositories.CategoryRepository;
 import br.com.borges.moises.expensetracker.db.repositories.TransactionRepository;
+import br.com.borges.moises.expensetracker.dialogs.CalculatorDialog;
 import br.com.borges.moises.expensetracker.model.Account;
 import br.com.borges.moises.expensetracker.model.Category;
 import butterknife.Bind;
@@ -116,6 +117,11 @@ public class AddExpenseFragment extends Fragment implements AddExpenseContract.V
                 mDateEditText.getText().toString(),
                 (Account) mAccountSpinner.getSelectedItem(),
                 (Category) mCategorySpinner.getSelectedItem());
+    }
+
+    @OnClick(R.id.expense_amount) void onAmountClick() {
+        DialogFragment dialogFragment = new CalculatorDialog();
+        dialogFragment.show(getFragmentManager(), "Calculator");
     }
 
     @OnClick(R.id.expense_date)
