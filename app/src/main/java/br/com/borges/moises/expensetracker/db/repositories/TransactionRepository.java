@@ -63,6 +63,14 @@ public class TransactionRepository {
             " on " + TransactionTable.Columns.CATEGORY_WITH_PREFIX + " = " + CategoryTable.Columns.ID_WITH_PREFIX +
             " where " + TransactionCategoryTable.Columns.ID_WITH_PREFIX + " = ?";
 
+    private static final String QUERY_FIND_ALL = "select " + COLUMNS + " from " +
+            TransactionTable.NAME + " inner join " + AccountTable.NAME +
+            " on " + TransactionTable.Columns.ACCOUNT_WITH_PREFIX + " = " + AccountTable.Columns.ID_WITH_PREFIX + " " +
+            " inner join " + TransactionCategoryTable.NAME +
+            " on " + TransactionTable.Columns.TYPE_WITH_PREFIX + " = " + TransactionCategoryTable.Columns.ID_WITH_PREFIX +
+            " inner join " + CategoryTable.NAME +
+            " on " + TransactionTable.Columns.CATEGORY_WITH_PREFIX + " = " + CategoryTable.Columns.ID_WITH_PREFIX;
+
     private static TransactionRepository sTransactionRepository;
     private static SQLiteQueryBuilder sQueryBuilder;
 
@@ -79,11 +87,29 @@ public class TransactionRepository {
                     .getWritableDatabase();
     }
 
+    public double getSumofAllTransactions() {
+        String query = "select sum(" + TransactionTable.Columns.AMOUNT_WITH_PREFIX + ") as Total from " + TransactionTable.NAME +
+                " where " + TransactionTable.Columns.DATE_WITH_PREFIX + " < date('now')";
+        Cursor cursor = mDatabase.rawQuery(query, null);
+        cursor.moveToFirst();
+        return cursor.getDouble(cursor.getColumnIndex("Total"));
+    }
 
+    @NonNull
+    public List<Transaction> getTransactions() {
+        return getTransactions(QUERY_FIND_ALL, null);
+    }
+
+    @NonNull
     public List<Transaction> getTransactions(int typeId) {
         String query = QUERY_FIND_BY_TYPE +
                 " order by " + TransactionTable.Columns.ID_WITH_PREFIX + " desc";
         String[] selectionArgs = new String[] {String.valueOf(typeId)};
+        return getTransactions(query, selectionArgs);
+    }
+
+    @NonNull
+    private List<Transaction> getTransactions(String query, String[] selectionArgs) {
         Cursor c = mDatabase.rawQuery(query, selectionArgs);
         c.moveToFirst();
 

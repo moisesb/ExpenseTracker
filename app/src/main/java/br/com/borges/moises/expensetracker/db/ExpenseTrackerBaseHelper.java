@@ -57,9 +57,9 @@ public class ExpenseTrackerBaseHelper extends SQLiteOpenHelper {
 
     private void insertTransactionInitialData(SQLiteDatabase db) {
         db.execSQL(TransactionTable.Sql.INSERT_VALUE,
-                TransactionTable.Sql.getInsertParams(1, "Car Insurance", 2, 354.76, "2016-01-02", 1, 1));
+                TransactionTable.Sql.getInsertParams(1, "Car Insurance", 2, -354.76, "2016-01-02", 1, 1));
         db.execSQL(TransactionTable.Sql.INSERT_VALUE,
-                TransactionTable.Sql.getInsertParams(2, "Lunch", 2, 25.00, "2016-01-14", 1, 1));
+                TransactionTable.Sql.getInsertParams(2, "Lunch", 2, -25.00, "2016-01-14", 1, 1));
     }
 
     private void insertTransactionTypeInitialData(SQLiteDatabase db) {

@@ -1,8 +1,11 @@
 package br.com.borges.moises.expensetracker.utils;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by moise on 13/02/2016.
@@ -21,5 +24,15 @@ public final class DateUtils {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    public static int getCurrentYear() {
+        Calendar now = Calendar.getInstance();
+        return now.get(Calendar.YEAR);
+    }
+
+    public static int getCurrentMonth() {
+        Calendar now = Calendar.getInstance();
+        return now.get(Calendar.MONTH);
     }
 }

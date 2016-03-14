@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -48,6 +49,15 @@ public class DashboardActivity extends AppCompatActivity {
         configActionBar();
 
         setupNavigationDrawer();
+
+        addFragment();
+    }
+
+    private void addFragment() {
+        Fragment fragment = DashboardFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.single_fragment_framelayout,fragment)
+                .commit();
     }
 
     @Override
@@ -142,8 +152,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void configActionBar() {
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
     }
 
 }
